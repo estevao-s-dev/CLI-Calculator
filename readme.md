@@ -4,6 +4,7 @@ This is a Simple fully functioning CLI Calculator. Next step will be exploring G
 
 To test it, just copy the code and compile it to run on your OS.
 
-PLEASE NOTE: I didn't add other alternatives of "Yes" or "No" answers. For now, consider answering the prompts with 'Y' or 'N' only.
-Thank you!
+
+**Thank You!**
+
 
