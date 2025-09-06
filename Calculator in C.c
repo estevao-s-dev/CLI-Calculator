@@ -7,12 +7,12 @@
 
 // Functions
 
-float sum       (void);
-float sub       (void);
-float multi     (void);
-float div       (void);
-float power     (void);
-float sqroot    (void);
+void sum    ();
+void sub    ();
+void multi  ();
+void div    ();
+void power  ();
+void sqroot ();
 
 // -- Main --
 
@@ -22,12 +22,12 @@ int main (void)
     char    confirmation;
     scanf   ("%s", & confirmation);
 
-    if (confirmation == 'N')
+    if (confirmation == 'N' || confirmation == 'No' ||  confirmation == 'no' || confirmation == 'n')
     {
         printf("Alright, goodbye.\n");
     }
     
-    while (confirmation == 'Y')
+    while (confirmation == 'Y' || confirmation == 'Yes' ||  confirmation == 'yes' || confirmation == 'y')
     {
 
         printf  ("Operations:\n1. + \n2. - \n3. * \n4. / \n5. ^\n6. Sqroot\n \n");
@@ -76,13 +76,13 @@ int main (void)
         printf  ("Do you want to calculate more? Y/N ", " ");
         scanf   ("%s", & confirmation);
         
-        if (confirmation == 'N')
+        if (confirmation == 'N' || confirmation == 'No' ||  confirmation == 'no' || confirmation == 'n')
         {
                 printf  ("Alright, goodbye.\n");
                 break; // Exit program.
         }
 
-        if (confirmation == 'Y')
+        if (confirmation == 'Y' || confirmation == 'Yes' ||  confirmation == 'yes' || confirmation == 'y')
         {
                 continue; // Program keeps running.
         }
@@ -94,7 +94,7 @@ int main (void)
 
 // Functions Logic
 
-float sum       (void)
+void sum ()
 {
     float   x;
     printf  ("First number: ");
@@ -103,10 +103,10 @@ float sum       (void)
     printf  ("Second number: ");
     scanf   ("%f", & y);
     float   z = x + y;
-    return  printf   ("Result: "), printf    ("%.2f", z);
+    printf  ("Result: "), printf    ("%.2f", z);
 } 
 
-float sub       (void)
+void sub    ()
 {
     float   x;
     printf  ("First number: ");
@@ -115,11 +115,11 @@ float sub       (void)
     printf  ("Second number: ");
     scanf   ("%f", & y);
     float   z = x - y;
-    return  printf   ("Result: "), printf    ("%.2f", z);
+    printf  ("Result: "), printf    ("%.2f", z);
 
 }
 
-float multi     (void)
+void multi  ()
 {
     float   x;
     printf  ("First number: ");
@@ -128,10 +128,10 @@ float multi     (void)
     printf  ("Second number: ");
     scanf   ("%f", & y);
     float   z = x * y;
-    return  printf   ("Result: "), printf    ("%.2f", z);
+    printf  ("Result: "), printf    ("%.2f", z);
 }
 
-float div       (void)
+void div    ()
 {
     float   x;
     printf  ("First number: ");
@@ -140,9 +140,10 @@ float div       (void)
     printf  ("Second number: ");
     scanf   ("%f", & y);
     float   z = x / y;
-    return  printf   ("Result: "), printf    ("%.2f", z);
+    printf  ("Result: "), printf    ("%.2f", z);
 }
-float power     (void)
+
+void power  ()
 {
     float   x;
     printf  ("base number: ");
@@ -151,15 +152,15 @@ float power     (void)
     printf  ("Exponential number: ");
     scanf   ("%f", & y);
     float   z = pow(x, y);
-    return  printf   ("Result: "), printf    ("%.2f", z);
+    printf  ("Result: "), printf    ("%.2f", z);
 }
 
-float sqroot    (void)
+void sqroot ()
 {
     float   x;
     printf  ("Base number: ");
     scanf   ("%f", & x);
     float   z = sqrtf(x);
-    return  printf   ("Result: "), printf    ("%.2f", z);
+    printf  ("Result: "), printf    ("%.2f", z);
 
 }
