@@ -94,7 +94,7 @@ int main (void)
 
 // Functions Logic
 
-void sum ()
+void sum    ()
 {
     float   x;
     printf  ("First number: ");
