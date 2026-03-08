@@ -1,25 +1,52 @@
+# Makefile to compile and build the calculator.
+# In terminal run: 'make'.
+
 # Compiler and Flags
-CC      := gcc
-CFLAGS  := -Wall -Wextra -g
-LDFLAGS := -lm
-# Directories
-SRC_DIR   := src
-OBJ_DIR   := obj
-BIN_DIR   := bin
+CC = gcc
+CFLAGS = -Iinclude -Wall -Wextra -g
 
-# This simple script is to simply type in terminal: make "program".
-# It looks for source code (src/program.c), creates objects (obj/program.o) and binary (bin/program).
-%: $(SRC_DIR)/%.c
-	@mkdir -p $(OBJ_DIR) $(BIN_DIR)
-	@echo "Compiling $<..."
-	$(CC) $(CFLAGS) -c $< -o $(OBJ_DIR)/$*.o
-	@echo "Linking $@..."
-	$(CC) $(OBJ_DIR)/$*.o -o $(BIN_DIR)/$@ $(LDFLAGS)
-	@echo "Done! Executable is in $(BIN_DIR)/$@"
+# Folders
+SRCDIR = src
+LIBDIR = src/libs
+OBJDIR = obj
+BINDIR = bin
 
+# Fix quirks with some C libraries
+LIBS = -lm
+# Find all source files
+SOURCES = $(wildcard $(SRCDIR)/*.c) $(wildcard $(LIBDIR)/*.c) 
+# Convert the list of .c files into a list of .o files in the obj folder
+# This takes src/main.c -> obj/main.o
+OBJECTS = $(patsubst %.c, $(OBJDIR)/%.o, $(notdir $(SOURCES)))
+
+# The final name of your program
+TARGET = $(BINDIR)/calculator
+
+build:
+		
+	mkdir -p $(BINDIR) $(OBJDIR)	
+# The main rule (Link everything)
+	$(TARGET): $(OBJECTS) | $(BINDIR)
+		$(CC) $(OBJECTS) -o $(TARGET) $(LIBS)
+		
+# Rule to compile .c files into .o files
+# This handles files in src/
+	$(OBJDIR)/%.o: $(SRCDIR)/%.c | $(OBJDIR)
+		$(CC) $(CFLAGS) -c $< -o $@
+		
+# This handles files in src/libs/
+	$(OBJDIR)/%.o: $(LIBDIR)/%.c | $(OBJDIR)
+		$(CC) $(CFLAGS) -c $< -o $@
+		
+		
+	@echo "---------------------------------"
+	@echo "Compilation/Build Successfull!"
+	@echo "Executable is in bin/calculator"
+	@echo "---------------------------------"
+		
 # Clean utility
 clean:
-	rm -rf $(OBJ_DIR) $(BIN_DIR)
+	rm -rf $(OBJDIR) $(BINDIR)
 	@echo "Bin and Obj directories removed."
 
 .PHONY: clean
